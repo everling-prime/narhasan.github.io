@@ -35,6 +35,21 @@ analytics.page()
       <br><br><br>
       <input name="submit" type="submit" value="submit"/>
       <br><br>
-      </form>       
+      </form>
+          <script type="text/javascript">
+          function identify(e){
+            e.preventDefault();
+            var form = e.target;
+            var email = form["email"].value;
+            var fullname = form["fullname"].value;
+            var destination = form["destination"];
+            var details = form["details"].value;
+            var user = {email: email, name: fullname, destination: destination, details: details};
+            analytics.identify(email, {email: email, name: fullname});
+            analytics.track('destination submitted', user, function() {
+                window.location.href = "";
+            });
+          }
+    </script>
     </body>
     </html>
